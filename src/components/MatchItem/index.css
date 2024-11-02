@@ -1,0 +1,10 @@
+.thumbnail {
+  height: 100px;
+  width: 100px;
+  margin: 5px;
+}
+.btn {
+  border: none;
+  padding: 3px;
+  background-color: transparent;
+}
