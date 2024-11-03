@@ -23,24 +23,27 @@ class MatchGame extends Component {
     this.timerID = setInterval(this.runTimer, 1000)
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timerID)
-  }
+  // componentWillUnmount() {
+  //   clearInterval(this.timerID)
+  // }
 
   runTimer = () => {
     const {timer} = this.state
     if (timer > 0) {
       this.setState({timer: timer - 1})
+    } else {
+      clearInterval(this.timerID)
     }
   }
 
   onReset = () => {
     this.timerID = setInterval(this.runTimer, 1000)
+    const {imagesList, tabsList} = this.state
     this.setState({
       score: 0,
       timer: 60,
-      item: this.imagesList[0],
-      category: this.tabsList[0].tabId,
+      item: imagesList[0],
+      category: tabsList[0].tabId,
     })
   }
 
@@ -104,7 +107,7 @@ class MatchGame extends Component {
               <WinCard score={score} onReset={this.onReset} />
             </div>
           ) : (
-            <div>
+            <div className="content">
               <div>
                 <img src={item.imageUrl} className="mainimg" alt="match" />
               </div>
@@ -114,7 +117,7 @@ class MatchGame extends Component {
                     <Tabs
                       key={each.tabId}
                       details={each}
-                      activeTab={category === each.category}
+                      activeTab={category === each.tabId}
                       click={this.onChangeTab}
                     />
                   ))}

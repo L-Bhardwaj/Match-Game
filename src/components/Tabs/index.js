@@ -8,7 +8,7 @@ const Tabs = props => {
     click(tabId)
   }
 
-  const classNam = activeTab ? 'activeTab' : ''
+  const classNam = activeTab ? 'activeTab btn' : 'btn'
 
   return (
     <li key={key}>
